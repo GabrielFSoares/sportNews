@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http'
 })
 export class NewsService {
 
-  private api = 'http://newsapi.org/v2/top-headlines?country=br&category=sports&apiKey=93vddcb01f9345df5552ed3f5768g300e'; //chave fictícia
+  private api = 'http://newsapi.org/v2/top-headlines?country=br&category=sports&apiKey=93vddcb01f9345df5552ed3f5768g300e'; //chave aleatória
 
   constructor(public http:HttpClient) { }
 
