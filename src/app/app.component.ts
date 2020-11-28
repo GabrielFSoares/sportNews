@@ -13,37 +13,26 @@ export class AppComponent implements OnInit {
   public selectedIndex = 0;
   public appPages = [
     {
-      title: 'Inbox',
-      url: '/folder/Inbox',
-      icon: 'mail'
+      title: 'Home',
+      url: '/home',
+      icon: 'home'
     },
     {
-      title: 'Outbox',
-      url: '/folder/Outbox',
-      icon: 'paper-plane'
+      title: 'Notícias',
+      url: '/noticias',
+      icon: 'newspaper'
     },
     {
-      title: 'Favorites',
-      url: '/folder/Favorites',
-      icon: 'heart'
+      title: 'Mapa',
+      url: '/mapa',
+      icon: 'map'
     },
     {
-      title: 'Archived',
-      url: '/folder/Archived',
-      icon: 'archive'
-    },
-    {
-      title: 'Trash',
-      url: '/folder/Trash',
-      icon: 'trash'
-    },
-    {
-      title: 'Spam',
-      url: '/folder/Spam',
-      icon: 'warning'
+      title: 'Logout',
+      url: '/login',
+      icon: 'log-out'
     }
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
   constructor(
     private platform: Platform,
@@ -58,6 +47,10 @@ export class AppComponent implements OnInit {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  exit() {
+    navigator['app'].exitApp();
   }
 
   ngOnInit() {
