@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { AutenticacaoService } from './services/usuario/autenticacao.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +12,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
+  public email:string = "";
+
   public selectedIndex = 0;
   public appPages = [
     {
@@ -26,18 +30,15 @@ export class AppComponent implements OnInit {
       title: 'Mapa',
       url: '/mapa',
       icon: 'map'
-    },
-    {
-      title: 'Logout',
-      url: '/login',
-      icon: 'log-out'
     }
   ];
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    public router:Router,
+    public autenticacaoService:AutenticacaoService
   ) {
     this.initializeApp();
   }
@@ -58,5 +59,15 @@ export class AppComponent implements OnInit {
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
+  }
+
+  attMenu() {
+    this.email = this.autenticacaoService.email;
+  }
+
+  logoutUser() {
+    this.autenticacaoService.logout();
+    this.email = this.autenticacaoService.email;
+    this.router.navigate(['login']);
   }
 }

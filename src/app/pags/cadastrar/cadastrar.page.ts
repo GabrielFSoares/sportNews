@@ -25,10 +25,11 @@ export class CadastrarPage implements OnInit {
   insereUsuario() {
     if(this.password === this.password2) {
       this.autenticaoService.insereFirebase(this.email, this.password).then((res) => {
-        this.router.navigate(['/login']);
         this.email = '';
         this.password = '';
         this.password2 = '';
+        this.router.navigate(['/login']);
+        
       }).catch((erro) => {
         this.mensagem = "Erro ao incluir usuário";
         this.exibeMensagem();

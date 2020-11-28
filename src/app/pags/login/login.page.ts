@@ -13,7 +13,6 @@ export class LoginPage implements OnInit {
   public email:string="";
   public password:string="";
   public mensagem:string="";
-  public teste;
 
   constructor(
     public autenticaoService: AutenticacaoService,
@@ -26,8 +25,6 @@ export class LoginPage implements OnInit {
       this.router.navigate(['/home']);
       this.email = '';
       this.password = '';
-      this.teste = this.autenticaoService.getUsuario();
-      console.log(this.teste);
     }).catch((erro) => {
       this.mensagem = "E-mail e/ou senha inválido(s)";
       this.exibeMensagem();
@@ -42,8 +39,6 @@ export class LoginPage implements OnInit {
     toast.present();
   }
 
-  ngOnInit() {
-    this.autenticaoService.logout();
-  }
+  ngOnInit() { }
   
 }

@@ -6,7 +6,23 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class AutenticacaoService {
 
-  constructor(public ngFireAuth: AngularFireAuth) { }
+  public usuarioDados:any;
+  public nome:string = "";
+  public email:string = "";
+
+  constructor(public ngFireAuth: AngularFireAuth) { 
+    this.usuarioDados = null;
+
+    this.ngFireAuth.authState.subscribe(user => {
+      if (user) {
+        this.usuarioDados = user;
+        this.nome = this.usuarioDados.displayName;
+        this.email = this.usuarioDados.email;    
+      } else {
+        this.usuarioDados = null;
+      }
+    });
+  }
 
   public user_id:string;
 
@@ -19,10 +35,6 @@ export class AutenticacaoService {
   }
 
   logout() {
-    return this.ngFireAuth.signOut;
-  }
-
-  getUsuario() {
-    return this.ngFireAuth.currentUser;
+    return this.ngFireAuth.signOut();
   }
 }
